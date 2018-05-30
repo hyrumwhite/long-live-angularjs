@@ -5,9 +5,8 @@ import angular from 'angular';
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-	export default function TodoCtrl($scope, $stateParams, $filter, store) {
+	export default function TodoCtrl($scope, $stateParams, $filter, store, $state) {
 		'use strict';
-
 		var todos = $scope.todos = store.todos;
 
 		$scope.newTodo = '';
@@ -19,13 +18,11 @@ import angular from 'angular';
 			$scope.allChecked = !$scope.remainingCount;
 		}, true);
 
-		// Monitor the current route for changes and adjust the filter accordingly.
-		$scope.$on('$routeChangeSuccess', function () {
-			var status = $scope.status = $stateParams.status || '';
-			$scope.statusFilter = (status === 'active') ?
-				{ completed: false } : (status === 'completed') ?
-				{ completed: true } : {};
-		});
+		var status = $scope.status = $stateParams.status || '';
+		console.log({status, $stateParams});
+		$scope.statusFilter = (status === 'active') ?
+			{ completed: false } : (status === 'completed') ?
+			{ completed: true } : {};
 
 		$scope.addTodo = function () {
 			var newTodo = {

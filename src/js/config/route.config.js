@@ -8,7 +8,7 @@ const routeConfig = ($stateProvider, $urlRouterProvider, $locationProvider) => {
     params: {
       status: {
         type:'string',
-        value: 'completed',
+        value: '',
         squash: false
       }
     },
