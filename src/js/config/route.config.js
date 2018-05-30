@@ -1,4 +1,4 @@
-const routeConfig = ($stateProvider, $urlRouterProvider, $locationProvider) => {
+export default ($stateProvider, $urlRouterProvider, $locationProvider) => {
   $locationProvider.hashPrefix('');
   const defaultState = {
     name: 'default',
@@ -23,5 +23,3 @@ const routeConfig = ($stateProvider, $urlRouterProvider, $locationProvider) => {
   $urlRouterProvider.otherwise('/');
   $stateProvider.state(defaultState);
 }
-
-export default routeConfig;
