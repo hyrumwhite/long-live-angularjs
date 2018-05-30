@@ -1,0 +1,34 @@
+{
+  "presets": [
+    ["env", {"modules":false}]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
+    },
+    "electron": {
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "electron": "current"
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "plugins": [
+    "babel-plugin-webpack-alias",
+    "transform-object-rest-spread",
+    "syntax-dynamic-import"
+  ]
+}
