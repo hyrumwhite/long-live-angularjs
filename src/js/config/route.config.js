@@ -1,24 +1,27 @@
-const routeConfig = ($routeProvider) => {
-  const routeConfig = {
+const routeConfig = ($stateProvider, $urlRouterProvider, $locationProvider) => {
+  $locationProvider.hashPrefix('');
+  const defaultState = {
+    name: 'default',
+    url: '/:status',
     controller: 'TodoCtrl',
     templateUrl: 'todomvc-index.html',
+    params: {
+      status: {
+        type:'string',
+        value: 'completed',
+        squash: false
+      }
+    },
     resolve: {
       store(todoStorage) {
         // Get the correct module (API or localStorage).
-        return todoStorage.then(module => {
-          module.get(); // Fetch the todo records in the background.
-          return module;
-        });
+        todoStorage.get();
+        return todoStorage;
       }
     }
-  };
-
-  $routeProvider
-    .when('/', routeConfig)
-    .when('/:status', routeConfig)
-    .otherwise({
-      redirectTo: '/'
-    });
+  }
+  $urlRouterProvider.otherwise('/');
+  $stateProvider.state(defaultState);
 }
 
 export default routeConfig;

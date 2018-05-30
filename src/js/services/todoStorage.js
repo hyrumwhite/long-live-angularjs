@@ -11,11 +11,8 @@ export function TodoStorage($http, $injector) {
 	// Detect if an API backend is present. If so, return the API module, else
 	// hand off the localStorage adapter
 	return $http.get('/api')
-		.then(function () {
-			return $injector.get('api');
-		}, function () {
-			return $injector.get('localStorage');
-		});
+		.then(() => $injector.get('api'))
+		.catch(() => $injector.get('localStorage'));
 }
 
 export function Api($resource) {
