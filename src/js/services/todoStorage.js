@@ -10,13 +10,15 @@ import angular from 'angular';
 export function TodoStorage($http, $injector) {
 	// Detect if an API backend is present. If so, return the API module, else
 	// hand off the localStorage adapter
-	return {
-		getService() {
-			return $http.get('/api')
-				.then(() => $injector.get('api'))
-				.catch(() => $injector.get('localStorage'));
-		}
+	if(this.isAPI) {
+		return $injector.get('api');
 	}
+	else if(this.isLocal) {
+		return $injector.get('localStorage');
+	}
+	return $http.get('/api')
+		.then(() => (this.isAPI = true) && $injector.get('api'))
+		.catch(() => (this.isLocal = true) && $injector.get('localStorage'));
 }
 
 export function Api($resource) {

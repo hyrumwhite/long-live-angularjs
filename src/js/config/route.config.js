@@ -6,10 +6,8 @@ export default ($stateProvider, $urlRouterProvider, $locationProvider) => {
     component:'mainComponent',
     resolve: {
       store(todoStorage) {
-        return todoStorage.getService().then(service => {
-          service.get();
-          return service;
-        });
+        todoStorage.get();
+        return todoStorage;
       }
     }
   }
