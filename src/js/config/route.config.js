@@ -3,23 +3,16 @@ export default ($stateProvider, $urlRouterProvider, $locationProvider) => {
   const defaultState = {
     name: 'default',
     url: '/:status',
-    controller: 'TodoCtrl',
-    templateUrl: 'todomvc-index.html',
-    params: {
-      status: {
-        type:'string',
-        value: '',
-        squash: false
-      }
-    },
+    component:'mainComponent',
     resolve: {
       store(todoStorage) {
-        // Get the correct module (API or localStorage).
-        todoStorage.get();
-        return todoStorage;
+        return todoStorage.getService().then(service => {
+          service.get();
+          return service;
+        });
       }
     }
   }
-  $urlRouterProvider.otherwise('/');
   $stateProvider.state(defaultState);
+  $urlRouterProvider.otherwise('/');
 }

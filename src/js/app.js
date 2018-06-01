@@ -13,6 +13,8 @@ import TodoCtrl from 'app-controllers/todoCtrl.js';
 import TodoEscape from 'app-directives/todoEscape.js';
 import TodoFocus from 'app-directives/todoFocus.js';
 
+import MainComponent from 'app-components/main/main.component.js';
+
 
 angular.module('todomvc', [
 	Router,
@@ -22,6 +24,6 @@ angular.module('todomvc', [
 	.factory('todoStorage', TodoStorage)
 	.factory('api', Api)
 	.factory('localStorage', LocalStorage)
-	.controller('TodoCtrl', TodoCtrl)
+	.component('mainComponent', MainComponent)
 	.directive('todoEscape', TodoEscape)
 	.directive('todoFocus', TodoFocus)

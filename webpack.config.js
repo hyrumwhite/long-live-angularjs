@@ -12,7 +12,7 @@ let config = {
   resolve: {
     alias: {
       'app-store': path.join(__dirname, '/src/store'),
-      'app-components': path.join(__dirname, '/src/components'),
+      'app-components': path.join(__dirname, '/src/js/components'),
       'app-config': path.join(__dirname, '/src/js/config'),
       'app-services': path.join(__dirname, '/src/js/services'),
       'app-controllers': path.join(__dirname, '/src/js/controllers'),
@@ -32,7 +32,7 @@ let config = {
   module: {
     rules: [
       { test: /\.vue$/, use: "vue-loader" },
-      { test: /\.html$/, use: "html"},
+      { test: /\.html$/, use: "html-loader"},
       { test: /\.css$/, use: ['style-loader', 'css-loader']},
       { test: /\.styl$/, use: ['style-loader','css-loader', 'stylus-loader']},
       {
@@ -46,7 +46,7 @@ let config = {
           }
         }
       },
-      { test: /\.js$/, include: [/src/, /node_modules\/ltk-components/, /extension/], use: ['babel-loader']}
+      { test: /\.js$/, include: [/src/], use: ['babel-loader']}
     ]
   },
   plugins
