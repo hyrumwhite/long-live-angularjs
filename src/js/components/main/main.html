@@ -9,52 +9,15 @@
     <section class="main" ng-show="$ctrl.todos.length" ng-cloak>
       <input id="toggle-all" class="toggle-all" type="checkbox" ng-model="$ctrl.allChecked" ng-click="$ctrl.markAll($ctrl.allChecked)">
       <label for="toggle-all">Mark all as complete</label>
-      <ul class="todo-list">
-        <li ng-repeat="todo in $ctrl.todos | filter:$ctrl.statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == $ctrl.editedTodo}">
-          <div class="view">
-            <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="$ctrl.toggleCompleted(todo)">
-            <label ng-dblclick="$ctrl.editTodo(todo)">{{todo.title}}</label>
-            <button class="destroy" ng-click="$ctrl.removeTodo(todo)"></button>
-          </div>
-          <form ng-submit="$ctrl.saveEdits(todo, 'submit')">
-            <input
-              class="edit"
-              ng-trim="false"
-              ng-model="todo.title"
-              todo-escape="$ctrl.revertEdits(todo)"
-              ng-blur="$ctrl.saveEdits(todo, 'blur')"
-              todo-focus="todo == $ctrl.editedTodo"
-            >
-          </form>
-        </li>
-      </ul>
+      <todo-list status="$ctrl.status" store="$ctrl.store" on-toggle-completed="$ctrl.toggleCompleted(todo, completed)"></todo-list>
     </section>
-    <footer class="footer" ng-show="$ctrl.todos.length" ng-cloak>
-      <span class="todo-count"><strong>{{$ctrl.remainingCount}}</strong>
-        <ng-pluralize count="$ctrl.remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
-      </span>
-      <ul class="filters">
-        <li>
-          <a ng-class="{selected: $ctrl.status == ''} " href="#/">All</a>
-        </li>
-        <li>
-          <a ng-class="{selected: $ctrl.status == 'active'}" href="#/active">Active</a>
-        </li>
-        <li>
-          <a ng-class="{selected: $ctrl.status == 'completed'}" href="#/completed">Completed</a>
-        </li>
-      </ul>
-      <button class="clear-completed" ng-click="$ctrl.clearCompletedTodos()" ng-show="$ctrl.completedCount">Clear completed</button>
-    </footer>
+    <nav-footer todos="$ctrl.todos"
+                status="$ctrl.status"
+                remaining-count="$ctrl.remainingCount"
+                completed-count="$ctrl.completedCount"
+                on-clear-completed="$ctrl.clearCompletedTodos()"
+    >
+    </nav-footer>
   </section>
-  <footer class="info">
-    <p>Double-click to edit a todo</p>
-    <p>Credits:
-      <a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a>,
-      <a href="http://ericbidelman.com">Eric Bidelman</a>,
-      <a href="http://jacobmumm.com">Jacob Mumm</a> and
-      <a href="http://blog.igorminar.com">Igor Minar</a>
-    </p>
-    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-  </footer>
+  <info-footer></info-footer>
 </div>

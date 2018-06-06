@@ -14,6 +14,9 @@ import TodoEscape from 'app-directives/todoEscape.js';
 import TodoFocus from 'app-directives/todoFocus.js';
 
 import MainComponent from 'app-components/main/main.component.js';
+import TodoList from 'app-components/main/todo-list/todo-list.component.js';
+import NavFooter from 'app-components/main/nav-footer/nav-footer.component.js';
+import InfoFooter from 'app-components/main/info-footer/info-footer.component.js';
 
 
 angular.module('todomvc', [
@@ -24,6 +27,11 @@ angular.module('todomvc', [
 	.factory('todoStorage', TodoStorage)
 	.factory('api', Api)
 	.factory('localStorage', LocalStorage)
+
 	.component('mainComponent', MainComponent)
+	.component('todoList', TodoList)
+	.component('navFooter', NavFooter)
+	.component('infoFooter', InfoFooter)
+
 	.directive('todoEscape', TodoEscape)
 	.directive('todoFocus', TodoFocus)
