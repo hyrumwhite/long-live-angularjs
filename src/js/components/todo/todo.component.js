@@ -1,4 +1,4 @@
-import template from './main.html';
+import template from './todo.html';
 
 export default {
   bindings:{
