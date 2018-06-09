@@ -1,7 +1,23 @@
 import './todo.styl';
 import template from './todo.html';
 
+import TodoList from './todo-list/todo-list.component.js';
+import NavFooter from './nav-footer/nav-footer.component.js';
+import InfoFooter from './info-footer/info-footer.component.js';
+
+import TodoEscape from './directives/todoEscape.js';
+import TodoFocus from './directives/todoFocus.js';
+
 export default {
+  components: {
+    TodoList,
+    NavFooter,
+    InfoFooter
+  },
+  directives: {
+    TodoEscape,
+    TodoFocus
+  },
   template,
   controller($scope, $stateParams, $filter, $state, todoStorage) {
     todoStorage.then(store => {

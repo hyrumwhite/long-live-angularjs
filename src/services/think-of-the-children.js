@@ -10,14 +10,16 @@ export default function ThinkOfTheChildren(module) {
 
   const registerChildDirectives = ({directives}) => {
     for(var key in directives) {
+      let childDefinition = directives[key];
       key = key[0].toLowerCase() + key.slice(1);
-      module.directive(key, directives[key]);
+      module.directive(key, childDefinition);
     }
   };
 
   const decorateComponent = originalComponentFunction => {
     module.component = function(name, definition) {
       definition.components && registerChildComponents(definition);
+      definition.directives && registerChildDirectives(definition);
       name = name[0].toLowerCase() + name.slice(1);
       originalComponentFunction(name, definition);
       return module;
