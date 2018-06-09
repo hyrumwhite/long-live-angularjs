@@ -12,17 +12,18 @@ let config = {
   resolve: {
     alias: {
       'app-store': path.join(__dirname, '/src/store'),
-      'app-components': path.join(__dirname, '/src/js/components'),
-      'app-config': path.join(__dirname, '/src/js/config'),
-      'app-services': path.join(__dirname, '/src/js/services'),
-      'app-controllers': path.join(__dirname, '/src/js/controllers'),
-      'app-directives': path.join(__dirname, '/src/js/directives'),
+      'app-components': path.join(__dirname, '/src/components'),
+      'app-config': path.join(__dirname, '/src/config'),
+      'app-services': path.join(__dirname, '/src/services'),
+      'app-controllers': path.join(__dirname, '/src/controllers'),
+      'app-directives': path.join(__dirname, '/src/directives'),
       'node_modules': path.join(__dirname, '/node_modules'),
     }
   },
   mode: productionMode ? "production" : "development",
   entry: {
-    main: ['./src/js/app.js'],
+    main: ['./src/main/main.module.js'],
+    todos: ['./src/pages/todos/todos.module.js']
   },
   output: {
       path: __dirname + '/public',

@@ -1,12 +1,15 @@
+import './todo.styl';
 import template from './todo.html';
 
 export default {
-  bindings:{
-    store: '<',
-  },
   template,
-  controller($scope, $stateParams, $filter, $state) {
-    this.$onChanges = ({store}) => store && init();
+  controller($scope, $stateParams, $filter, $state, todoStorage) {
+    todoStorage.then(store => {
+      this.store = store;
+      this.store.get();
+      init();
+    });
+    // this.$onChanges = ({store}) => store && init();
     let todos = [];
     const init = () => {
       todos = this.todos = this.store.todos;
