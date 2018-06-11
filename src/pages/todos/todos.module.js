@@ -1,5 +1,5 @@
 import "node_modules/angular-resource/angular-resource.js";
-import ThinkOfTheChildren from 'app-services/think-of-the-children.js';
+import ThinkOfTheChildren from 'think-of-the-children';
 import { TodoStorage, Api, LocalStorage } from 'app-services/todoStorage.js';
 
 import TodoComponent from './components/todo/todo.component.js';
@@ -13,4 +13,3 @@ ThinkOfTheChildren(app)
 	.factory('localStorage', LocalStorage)
 
 	.component('todoComponent', TodoComponent)
-	
